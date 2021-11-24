@@ -1,0 +1,43 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+  {{ super() }}
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+{% endblock %}
+
+{% block title %}Favourites{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h1 class="heading">My Favourites</h1>
+
+{#{% if exist==False %}#}
+{%  for movie in my_movies %}
+  <div class="card" >
+      <div class="front" style="background-image: url('{{ movie.img_url }}');">
+        <p class="large">🤍</p>
+    </div>
+    <div class="back">
+      <div>
+    <div class="title">{{ movie.title }} <span class="release_date">{{ movie.year }}</span></div>
+        <div class="rating">
+            <label>{{ movie.rating }}</label>
+          <i class="fas fa-star star"></i>
+        </div>
+          <p class="review">{{ movie.review }}</p>
+        <p class="overview">{{ movie.description }}</p>
+
+        <a href="{{ url_for('un_favourite', id=movie.id) }}" class="button">Remove</a>
+
+      </div>
+    </div>
+  </div>
+    {%  endfor %}
+
+{#{% endif %}#}
+
+
+</div>
+{% endblock %}
